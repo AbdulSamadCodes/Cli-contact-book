@@ -5,7 +5,7 @@ const { parseData } = require('./utils/utils.js');
 function addContactToFile(contactData) {
   fs.readFile('contacts.json', 'utf-8', (error, data) => {
     if (error) {
-      console.warn('An error occurred');
+      console.log('An error occurred');
 
       return;
     }
@@ -16,7 +16,7 @@ function addContactToFile(contactData) {
     contacts.push(contactData);
 
     fs.writeFile('contacts.json', JSON.stringify(contactsData, null, 2), 'utf-8', (error) => {
-      if (error) console.warn('Cannot add the contact')
+      if (error) console.log('Cannot add the contact')
     })
 
   })
