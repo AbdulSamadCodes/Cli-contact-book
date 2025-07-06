@@ -1,4 +1,4 @@
-const createContact  = require('./src/Features/addcontact');
+const addContact  = require('./src/Features/addcontact');
 
 console.log('---------- CLI Contact Book ----------\n')
 
@@ -7,7 +7,8 @@ const options = Object.freeze({
   'ADD' : 'add',
   'UPDATE' : 'update',
   'DELETE' : 'delete',
-  'SEARCH' : 'search'
+  'SEARCH' : 'search',
+  'LIST' : 'list'
 });
 
 const actions = Object.freeze({
@@ -26,11 +27,5 @@ function performAction() {
 
   actions[options[userOption.toUpperCase()]]();
 } 
-
-function addContact() {
-  const [ contactName , contactNumber ] = process.argv.slice(3,5);
-
-  createContact();
-}
 
 performAction();
