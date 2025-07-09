@@ -10,7 +10,7 @@ function listContacts() {
 
     const contacts = JSON.parse(data).contacts;
 
-    contacts.forEach(({name , phone}) => console.log(`name=${name} , phone=${phone}`));
+    contacts.forEach(({name , phone} , index) => console.log(`${index + 1}. name:${name} phone:${phone}`));
   })
 }
 

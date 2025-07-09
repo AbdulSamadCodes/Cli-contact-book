@@ -16,7 +16,13 @@ function addContactToFile(contactData) {
     contacts.push(contactData);
 
     fs.writeFile('contacts.json', JSON.stringify(contactsData, null, 2), 'utf-8', (error) => {
-      if (error) console.log('Cannot add the contact')
+      if (error) {
+        console.log('Cannot add the contact');
+
+        return;
+      }
+
+      console.log('Contact added successfully!');
     })
 
   })
