@@ -1,10 +1,11 @@
 const fs = require('fs');
+const { printErrorMessage } = require('./utils/utils.js');
 
 function listContacts() {
   fs.readFile('contacts.json', 'utf-8', (error, data) => {
     if (error) {
-      console.log('An error occurred');
-
+      printErrorMessage('An error ocurred');
+      
       return;
     }
 
