@@ -1,8 +1,14 @@
-const fs = require('fs');
-const { parseData , printErrorMessage } = require('./utils/utils.js');
+  const fs = require('fs');
+const { parseData , printErrorMessage, existsInFile  } = require('./utils/utils.js');
 
 /* reading and writing contact data to file */
-function addContactToFile(contactData) {
+function addContactToFile(contactData) {   
+  if(existsInFile(contactData)) {
+    console.log('Contact name or phone already exits!!');
+
+    return;
+  };
+
   fs.readFile('contacts.json', 'utf-8', (error, data) => {
     if (error) {
       printErrorMessage('An error ocurred');
@@ -24,7 +30,6 @@ function addContactToFile(contactData) {
 
       console.log('Contact added successfully!');
     })
-
   })
 }
 
