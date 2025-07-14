@@ -1,5 +1,5 @@
-function parseData(contactNameData , contactPhoneData) {
-  return [ contactNameData.split('=')[1] , contactPhoneData.split('=')[1]];
+function parseData(...data) {
+  return data.map((query) => query.split('=')[1]);
 }
 
 function printErrorMessage(error) {
