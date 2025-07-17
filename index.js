@@ -2,6 +2,7 @@ const addContact  = require('./src/Features/addcontact');
 const listContacts  = require('./src/Features/listcontacts');
 const updateContact = require('./src/Features/updatecontact');
 const deleteContact = require('./src/Features/deletecontact');
+const searchContact = require('./src/Features/searchcontact');
 
 console.log('---------- CLI Contact Book ----------\n')
 
@@ -18,7 +19,8 @@ const actions = Object.freeze({
   'add' : addContact,
   'list' : listContacts,
   'update' : updateContact,
-  'delete' : deleteContact
+  'delete' : deleteContact,
+  'search' : searchContact
 }); 
 
 /* Read the user command and perform action */
