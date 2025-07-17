@@ -5,7 +5,7 @@ function parseData(...data) {
 }
 
 function printErrorMessage(error) {
-  console.log(`${error}!!!`);
+  console.log(`${error}!!`);
 }
 
 function existsInFile({ name, phone }) {

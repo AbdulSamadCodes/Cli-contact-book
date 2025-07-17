@@ -4,11 +4,14 @@ const updateContact = require('./src/Features/updatecontact');
 const deleteContact = require('./src/Features/deletecontact');
 const searchContact = require('./src/Features/searchcontact');
 
+const { printErrorMessage } = require('./src/Features/utils/utils.js');
+
 console.log(`
 -----------------------------------------
          CLI CONTACT BOOK 📒
 -----------------------------------------
 `);
+
 /* Options for user to select */
 const options = Object.freeze({
   'ADD' : 'add',
@@ -31,7 +34,13 @@ function performAction() {
   const userOption = process.argv.slice(2,3)[0];  
 
   if(!userOption) {
-    console.log('Please enter the command');
+    console.log('Please enter a command');
+
+    return;
+  }
+
+  if(!Object.keys(actions).includes(userOption)) {
+    printErrorMessage('No such command found');
 
     return;
   }
