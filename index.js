@@ -4,8 +4,11 @@ const updateContact = require('./src/Features/updatecontact');
 const deleteContact = require('./src/Features/deletecontact');
 const searchContact = require('./src/Features/searchcontact');
 
-console.log('---------- CLI Contact Book ----------\n')
-
+console.log(`
+-----------------------------------------
+         CLI CONTACT BOOK 📒
+-----------------------------------------
+`);
 /* Options for user to select */
 const options = Object.freeze({
   'ADD' : 'add',

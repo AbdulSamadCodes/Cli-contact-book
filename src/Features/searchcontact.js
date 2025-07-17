@@ -1,37 +1,73 @@
-const fs = require('fs/promises');
+const fs = require('fs');
 const readline = require('readline');
+const { printErrorMessage , performOperationInFile } = require('./utils/utils.js');
 
-function searchInFile(option , query) {
-  
+function searchInFile(option , query, closeCallback) {
+  fs.readFile('contacts.json' , 'utf-8' , (error,data) => {
+      if(error) {
+        printErrorMessage('Cannot search the contact');
+        closeCallback();
+          
+         return;
+      }
+
+      const contacts = JSON.parse(data).contacts;
+
+      const searchedContact = contacts.find((contact) => contact[option] === query);
+
+      if(!searchedContact) {
+        printErrorMessage('Contact does not exists');
+        
+        closeCallback()
+        return;
+      }
+
+      console.log('\n🔍 Search Result:\n');
+
+      console.log(
+        `name : ${searchedContact['name']}
+phone : ${searchedContact['phone']}`
+);
+
+      closeCallback();
+  });
 }
 
 function searchContact() {
-  const USER_PROMPT = `Press 'name' for searching by name or press 'phone' for searching by name):\n`;
-  const OPTIONS = ['name' , 'phone'];
+const USER_PROMPT = `
+📘 Choose an option:
+🧑 name   → Search by name
+📞 phone  → Search by phone
+❌ exit   → Exit the app
 
+➡️  Your choice: `;
+
+  const OPTIONS = ['name' , 'phone', 'exit'];
+  
   const readlineInterface = readline.createInterface({
     input : process.stdin,
     output : process.stdout
   });
-
+  
   readlineInterface.question(USER_PROMPT,
-      (answer) => {
-        if(!OPTIONS.includes(answer)) {
-          console.log('Please select a valid option again');
+    (option) => {
 
-          readlineInterface.close();
+      if(option === OPTIONS.at(-1)) {
+        readlineInterface.close();
 
-          /* prompt user recursively */
-          searchContact();
-        }
+        return;
+      }
 
-        if(answer === 'name') {
-          readlineInterface.close();          
-        }
-          
-        if(answer === "phone") {
-          readlineInterface.close();          
-        }
+      if(!OPTIONS.includes(option)) {
+        console.log(`You didn't choose a valid option`);
+        readlineInterface.close();
+
+        return;
+      }
+        
+        readlineInterface.question(`Enter ${option}:\n` , (query) => { 
+           searchInFile(option,query,() => readlineInterface.close()); 
+        })      
       }
     );  
 }

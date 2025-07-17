@@ -4,7 +4,7 @@ function updateContactInFile(contactData) {
   
   performOperationInFile(contactData , 'Cannot update the contact' , 
     'Updated contact successfully!' , 
-    
+
     (contacts,contactData) => {
        const updatedContactIndex = contacts.findIndex(
           (contact) => contact.name === contactData.name);
@@ -12,7 +12,7 @@ function updateContactInFile(contactData) {
        if(updatedContactIndex === -1) {
           console.log('Contact not found!!');
  
-        return;
+          return 1;
       }
    
       contacts.splice(updatedContactIndex,1,

@@ -11,7 +11,7 @@ function deleteContactFromFile(contactName) {
       if(deletedContactIndex === -1) {
         console.log('Contact not found!!');
 
-        return;
+        return 1;
       } 
 
       contacts.splice(deletedContactIndex , 1);

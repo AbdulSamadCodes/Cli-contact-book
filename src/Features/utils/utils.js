@@ -28,7 +28,7 @@ function performOperationInFile(contactData, errorMessage, sucessMessage, operat
     const contactsData = JSON.parse(data);
     const contacts = contactsData.contacts;
 
-    operation(contacts , contactData);
+    const operationCode = operation(contacts , contactData);
 
     fs.writeFile('contacts.json', JSON.stringify(contactsData, null, 2), 'utf-8', (error) => {
       if (error) {
@@ -37,9 +37,11 @@ function performOperationInFile(contactData, errorMessage, sucessMessage, operat
         return;
       }
 
+      if(operationCode) return;
+
       console.log(sucessMessage);
     })
   })
 }
 
-module.exports = { parseData, existsInFile, performOperationInFile };
+module.exports = { parseData, existsInFile, performOperationInFile, printErrorMessage };
