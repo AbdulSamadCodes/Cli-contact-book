@@ -1,10 +1,12 @@
-const fs = require('fs');
 const { parseData, printErrorMessage, performOperationInFile } = require('./utils/utils.js');
 
 function deleteContactFromFile(contactName) {
-  performOperationInFile(contactName, 'Cannot delete the contact', 'Deleted contact successfully',
+  performOperationInFile(contactName, 'Cannot delete the contact', 
+    'Deleted contact successfully',
+
     (contacts, contactName) => {
-      const deletedContactIndex = contacts.findIndex((contact) => contact.name === contactName); 
+      const deletedContactIndex = contacts.findIndex(
+        (contact) => contact.name === contactName); 
 
       if(deletedContactIndex === -1) {
         console.log('Contact not found!!');

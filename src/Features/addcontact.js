@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { parseData , existsInFile , performOperationInFile } = require('./utils/utils.js');
 
 /* reading and writing contact data to file */
@@ -9,7 +8,9 @@ function addContactToFile(contactData) {
     return;
   };
 
-  performOperationInFile(contactData , 'Cannot add the contact' , 'Added contact succesfully',
+  performOperationInFile(contactData , 'Cannot add the contact' , 
+    'Added contact succesfully',
+    
     (contacts,contactData) => contacts.push(contactData)
   );
 }
